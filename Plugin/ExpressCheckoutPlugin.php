@@ -252,7 +252,7 @@ class ExpressCheckoutPlugin extends AbstractPlugin
             case 'Pending':
                  //This exception should be trow just if the reason of the 'pending state' is different to 'authorization state'
                 if ($response->body->get('PENDINGREASON')!='authorization') {
-                    throw new PaymentPendingException('Payment is still pending: '.$response->body->get('PENDINGREASON'));
+                    throw new PaymentPendingException('Pending: '.$authorizationId.' - '.$response->body->get('PAYMENTSTATUS').' - '.$details->body->get('PAYMENTSTATUS'));
                 }
                 break;
             default:
